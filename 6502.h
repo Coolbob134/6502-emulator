@@ -18,7 +18,7 @@ int init(int argc, char **argv) //Initialization
 {
     
     mainmem = (unsigned char*)malloc(memsize*sizeof(int));
-    FILE *rom = fopen("programmem.bin","r");       
+    FILE *rom = fopen("programmem.bin","r");    //default file to be executed //replace programmem.bin with another default file
     if (argc >= 2)
     {
         FILE *rom = fopen(argv[2],"r");
