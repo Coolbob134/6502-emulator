@@ -1,2 +1,2 @@
 # 6502-emulator
-Lightweight 6502 emulator in a C header file
+Emulator for the MOS 6502 written in C, contained within a single header file.
