@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// b7,b6,b5,b4,b3,b2,b1,b0
+// b7,b6,b5,b4,b3,b2,b1,b0 //6502 bits
 // Status |= 0b00010000 // set BRK 
 
 #define memsize    0xFFFF
@@ -14,11 +14,11 @@ static unsigned char* mainmem;
 static void (*instructionArr[])();
 
 
-int init(int argc, char **argv)
+int init(int argc, char **argv) //Initialization
 {
     
     mainmem = (unsigned char*)malloc(memsize*sizeof(int));
-    FILE *rom = fopen("programem.bin","r");       
+    FILE *rom = fopen("programmem.bin","r");       
     if (argc >= 2)
     {
         FILE *rom = fopen(argv[2],"r");
@@ -28,7 +28,7 @@ int init(int argc, char **argv)
     fclose(rom);
 }
 
-int loop()
+int loop() //Main loop
 {
     if (programcounter < memsize && ((Status & 0b00010000) == 0 ))
     {
@@ -41,16 +41,7 @@ int loop()
 
 }
 
-int printbits(unsigned char inchar) {
-  
-  for(int i = 7; i >= 0; i--) 
-  {
-    putchar('0' + ((inchar >> i) & 1));
-  }
-  printf("\n");
-}
-
-unsigned short int dbyte(int address)
+unsigned short int dbyte(int address) //function to convert from little endian to big endian from given address and address + 1
 {
     unsigned char lowbyte = *(mainmem+address), highbyte = *(mainmem+address+1);
     return ((highbyte << 8) | lowbyte);
@@ -62,7 +53,7 @@ void pushstack(unsigned char inbyte)
     StackPointer--;
 }
 
-char calcrelative(unsigned char operand)
+char calcrelative(unsigned char operand) // calculate relative offset
 {
     if (operand >= 0b10000000)
     {
@@ -71,7 +62,7 @@ char calcrelative(unsigned char operand)
     return operand;
 }
 
-unsigned char pullstack()
+unsigned char pullstack()//pull from stack
 {
     StackPointer++;
     return *(mainmem+0x100+StackPointer);
@@ -89,11 +80,9 @@ void NOP()
     programcounter++;
 }
 
-void JAM()
+void JAM() //Jams the cpu
 {
-    printf("JAMMED\n");
     Status |= 0b00010000;
-    printbits(Status);
 }
 
 //=======================================================================================
