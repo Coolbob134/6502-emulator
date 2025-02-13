@@ -1,2 +1,5 @@
 # 6502-emulator
-Emulator for the MOS 6502 written in C, contained within a single header file.
+C library for emulating the MOS 6502 microprocessor, contained within a single header file.
+
+An example project is provided in [Example](https://github.com/Coolbob134/6502-emulator/tree/main/example)
+
