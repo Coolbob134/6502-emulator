@@ -1547,7 +1547,7 @@ void JMP_a_ind()
 void JMP_a()
 {
     //printf("\t%04X\t",*(mainmem+dbyte(programcounter+1)));
-    programcounter = *(mainmem+dbyte(programcounter+1));
+    programcounter = dbyte(programcounter+1);
 }
 
 //=======================================================================================
