@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// b7,b6,b5,b4,b3,b2,b1,b0 //6502 bits
+// b7,b6,b5,b4,b3,b2,b1,b0 //6502 bit order
 // Status |= 0b00010000 // set BRK 
 
 #define memsize    0xFFFF
