@@ -62,7 +62,7 @@ char calcrelative(unsigned char operand) // calculate relative offset
     return operand;
 }
 
-unsigned char pullstack()//pull from stack
+unsigned char pullstack() //pull from stack
 {
     StackPointer++;
     return *(mainmem+0x100+StackPointer);
@@ -93,7 +93,6 @@ void LDA_a()
     regA = *(mainmem+dbyte(programcounter+1));
     Status &= ~ (0b10000010);
     Status |= (((regA == 0) << 1) | (regA & 0b10000000));
-    //printf("LDA_a: %02X\n",dbyte(programcounter+1));
     programcounter+=3;
 }
 
@@ -102,7 +101,6 @@ void LDA_aX()
     regA = *(mainmem+dbyte(programcounter+1)+regX);
     Status &= ~ (0b10000010);
     Status |= (((regA == 0) << 1) | (regA & 0b10000000));
-    //printf("LDA_aX: %02X\n",regA);
     programcounter+=3;
 }
 
@@ -111,7 +109,6 @@ void LDA_aY()
     regA = *(mainmem+dbyte(programcounter+1)+regY);
     Status &= ~ (0b10000010);
     Status |= (((regA == 0) << 1) | (regA & 0b10000000));
-    //printf("LDA_aY: %02X\n",regA);
     programcounter+=3;
 }
 
@@ -120,7 +117,6 @@ void LDA_I()
     regA = *(mainmem+programcounter+1);
     Status &= ~ (0b10000010);
     Status |= (((regA == 0) << 1) | (regA & 0b10000000));
-    //printf("LDA_I: %02X\n",regA);
     programcounter+=2;
 }
 
@@ -129,7 +125,6 @@ void LDA_zpg()
     regA = *(mainmem+*(mainmem+programcounter+1));
     Status &= ~ (0b10000010);
     Status |= (((regA == 0) << 1) | (regA & 0b10000000));
-    //printf("LDA_ZPG: %02X\n",regA);
     programcounter+=2;
 }
 
@@ -138,7 +133,6 @@ void LDA_zpgX()
     regA = *(mainmem+*(mainmem+programcounter+1)+regX);
     Status &= ~ (0b10000010);
     Status |= (((regA == 0) << 1) | (regA & 0b10000000));
-    //printf("LDA_zpgX: %02X\n",regA);
     programcounter+=2;
 }
 
@@ -147,7 +141,6 @@ void LDA_ind_Y()
     regA = *(mainmem+dbyte(*(mainmem+programcounter+1))+regY);
     Status &= ~ (0b10000010);
     Status |= (((regA == 0) << 1) | (regA & 0b10000000));
-    //printf("LDA_ind_Y: %02X\n",regA);
     programcounter+=2;
 }
 
@@ -156,7 +149,6 @@ void LDA_X_ind()
     regA = *(mainmem+dbyte(*(mainmem+programcounter+1)+regX));
     Status &= ~ (0b10000010);
     Status |= (((regA == 0) << 1) | (regA & 0b10000000));
-    //printf("LDA_X_ind: %02X\n",regA);
     programcounter+=2;
 }
 
@@ -168,7 +160,6 @@ void LDX_a()
     regX = *(mainmem+dbyte(programcounter+1));
     Status &= ~ (0b10000010);
     Status |= (((regX == 0) << 1) | (regX & 0b10000000));
-    //printf("LDX_a: %02X\n",regX);
     programcounter+=3;
 }
 
@@ -177,7 +168,6 @@ void LDX_aY()
     regX = *(mainmem+dbyte(programcounter+1)+regY);
     Status &= ~ (0b10000010);
     Status |= (((regX == 0) << 1) | (regX & 0b10000000));
-    //printf("LDX_aY: %02X\n",regX);
     programcounter+=3;
 }
 
@@ -186,7 +176,6 @@ void LDX_I()
     regX = *(mainmem+programcounter+1);
     Status &= ~ (0b10000010);
     Status |= (((regX == 0) << 1) | (regX & 0b10000000));
-    //printf("LDX_I: %02X\n",regX);
     programcounter+=2;
 }
 
@@ -195,7 +184,6 @@ void LDX_zpg()
     regX = *(mainmem+*(mainmem+programcounter+1));
     Status &= ~ (0b10000010);
     Status |= (((regX == 0) << 1) | (regX & 0b10000000));
-    //printf("LDX_zpg: %02X\n",regX);
     programcounter+=2;
 }
 
@@ -204,7 +192,6 @@ void LDX_zpgY()
     regX = *(mainmem+*(mainmem+programcounter+1)+regY);
     Status &= ~ (0b10000010);
     Status |= (((regX == 0) << 1) | (regX & 0b10000000));
-    //printf("LDX_zpgY: %02X\n",regX);
     programcounter+=2;
 }
 
@@ -216,7 +203,6 @@ void LDY_a()
     regY = *(mainmem+dbyte(programcounter+1));
     Status &= ~ (0b10000010);
     Status |= (((regY == 0) << 1) | (regY & 0b10000000));
-    //printf("LDY_a: %02X\n",regY);
     programcounter+=3;
 }
 
@@ -225,7 +211,6 @@ void LDY_aX()
     regY = *(mainmem+dbyte(programcounter+1)+regX);
     Status &= ~ (0b10000010);
     Status |= (((regY == 0) << 1) | (regY & 0b10000000));
-    //printf("LDY_aX: %02X\n",regY);
     programcounter+=3;
 }
 
@@ -234,7 +219,6 @@ void LDY_I()
     regY = *(mainmem+programcounter+1);
     Status &= ~ (0b10000010);
     Status |= (((regY == 0) << 1) | (regY & 0b10000000));
-    //printf("LDY_I: %02X\n",regY);
     programcounter+=2;
 }
 
@@ -243,7 +227,6 @@ void LDY_zpg()
     regY = *(mainmem+*(mainmem+programcounter+1));
     Status &= ~ (0b10000010);
     Status |= (((regY == 0) << 1) | (regY & 0b10000000));
-    //printf("LDY_zpg: %02X\n",regY);
     programcounter+=2;
 }
 
@@ -252,7 +235,6 @@ void LDY_zpgX()
     regY = *(mainmem+*(mainmem+programcounter+1)+regX);
     Status &= ~ (0b10000010);
     Status |= (((regY == 0) << 1) | (regY & 0b10000000));
-    //printf("LDY_zpgX: %02X\n",regY);
     programcounter+=2;
 }
 //=======================================================================================
@@ -261,49 +243,42 @@ void LDY_zpgX()
 void STA_a()
 {
     *(mainmem+dbyte(programcounter+1)) = regA;
-    //printf("STA_a: %02X\n",regA);
     programcounter+=3;
 }
 
 void STA_aX()
 {
     *(mainmem+dbyte(programcounter+1)+regX) = regA;
-    //printf("STA_aX: %02X\n",regA);
     programcounter+=3;
 }
 
 void STA_aY()
 {
     *(mainmem+dbyte(programcounter+1)+regY) = regA;
-    //printf("STA_aY: %02X\n",regA);
     programcounter+=3;
 }
 
 void STA_zpg()
 {
     *(mainmem+*(mainmem+programcounter+1)) = regA;
-    //printf("STA_zpg: %02X\n",regA);
     programcounter+=2;
 }
 
 void STA_zpgX()
 {
     *(mainmem+*(mainmem+programcounter+1)+regX) = regA;
-    //printf("STA_zpgX: %02X\n",regA);
     programcounter+=2;
 }
 
 void STA_ind_Y()
 {
     *(mainmem+dbyte(*(mainmem+programcounter+1))+regY) = regA;
-    //printf("STA_ind_Y: %02X\n",regA);
     programcounter+=2;
 }
 
 void STA_X_ind()
 {
     *(mainmem+dbyte(*(mainmem+programcounter+1)+regX)) = regA;
-    //printf("STA_X_ind: %02X\n",regA);
     programcounter+=2;
 }
 
@@ -313,21 +288,18 @@ void STA_X_ind()
 void STX_a()
 {
     *(mainmem+dbyte(programcounter+1)) = regX;
-    //printf("STX_a: %02X\n",regX);
     programcounter+=3;
 }
 
 void STX_zpgY()
 {
     *(mainmem+*(mainmem+programcounter+1)+regY) = regX;
-    //printf("STX_zpgY: %02X\n",regX);
     programcounter+=2;
 }
 
 void STX_zpg()
 {
     *(mainmem+*(mainmem+programcounter+1)) = regX;
-    //printf("STX_zpg: %02X\n",regX);
     programcounter+=2;
 }
 
@@ -337,21 +309,18 @@ void STX_zpg()
 void STY_a()
 {
     *(mainmem+dbyte(programcounter+1)) = regY;
-    //printf("STY_a: %02X\n",regY);
     programcounter+=3;
 }
 
 void STY_zpgX()
 {
     *(mainmem+*(mainmem+programcounter+1)+regX) = regY;
-    //printf("STY_zpgX: %02X\n",regY);
     programcounter+=2;
 }
 
 void STY_zpg()
 {
     *(mainmem+*(mainmem+programcounter+1)) = regY;
-    //printf("STY_zpg: %02X\n",regY);
     programcounter+=2;
 }
 
@@ -572,7 +541,6 @@ void INC_a()
     tempvalue = *(mainmem + dbyte(programcounter+1));
     Status &= ~ (0b10000010);
     Status |= (((tempvalue == 0) << 1) | (tempvalue & 0b10000000)); 
-    //printf("INC_a %02X\n",*(mainmem + dbyte(programcounter+1)));
     programcounter+=3;
 }
 
@@ -582,7 +550,6 @@ void INC_aX()
     tempvalue = *(mainmem + dbyte(programcounter+1)+regX);
     Status &= ~ (0b10000010);
     Status |= (((tempvalue == 0) << 1) | (tempvalue & 0b10000000)); 
-    //printf("%02X",*(mainmem + dbyte(programcounter+1)));
     programcounter+=3;
 }
 
@@ -636,7 +603,6 @@ void DEC_a()
     tempvalue = *(mainmem + dbyte(programcounter+1));
     Status &= ~ (0b10000010);
     Status |= (((tempvalue == 0) << 1) | (tempvalue & 0b10000000));
-    //printf("DEC_a %02X\n",*(mainmem + dbyte(programcounter+1)));
     programcounter+=3;
 }
 
@@ -646,7 +612,6 @@ void DEC_aX()
     tempvalue = *(mainmem + dbyte(programcounter+1)+regX);
     Status &= ~ (0b10000010);
     Status |= (((tempvalue == 0) << 1) | (tempvalue & 0b10000000));
-    //printf("DEC_a %02X\n",*(mainmem + dbyte(programcounter+1)));
     programcounter+=3;
 }
 
@@ -1546,7 +1511,6 @@ void JMP_a_ind()
 
 void JMP_a()
 {
-    //printf("\t%04X\t",*(mainmem+dbyte(programcounter+1)));
     programcounter = dbyte(programcounter+1);
 }
 
